@@ -9,7 +9,13 @@ from texsheet.columns import (
     normalize_internal_name,
     validate_column_names,
 )
-from texsheet.config import make_table_id, normalize_config, save_config
+from texsheet.config import (
+    make_table_id,
+    normalize_config,
+    save_config,
+    table_input_csv_path,
+    table_output_tex_path,
+)
 from texsheet.dialogs import ColumnNameDialog
 from texsheet.paths import TABLES_DATA_DIR, project_path
 
@@ -232,8 +238,8 @@ def add_table(window):
     table_config = {
         "id": table_id,
         "name": name,
-        "input_csv": f"tables_data/{table_id}.csv",
-        "output_tex": f"tables/{table_id}.tex",
+        "input_csv": table_input_csv_path(table_id),
+        "output_tex": table_output_tex_path(table_id),
         "caption": name,
         "label": f"tab:{table_id}",
         "column_alignments": {"column1": "l"},
